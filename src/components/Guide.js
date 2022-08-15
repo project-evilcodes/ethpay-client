@@ -43,7 +43,7 @@ export default class Guide extends Component {
                             redirected to the EthPay Payment Gateway.
                         </p>
                         <ul>
-                            <li>Action URL: <code className="code-span">https://ethpay-api.bysatha.com/api/v1/pay</code>
+                            <li>Action URL: <code className="code-span">https://ethpay-server.herokuapp.com/api/v1/pay</code>
                             </li>
                             <br/>
                             <li>Required POST Parameters:</li>
@@ -67,7 +67,7 @@ export default class Guide extends Component {
                         <p>Code Sample</p>
                         <pre className={"code-span"} style={{borderRadius: "5px", padding: "5px"}}>
                         <code>
-                            {"<html>\n<body>\n<form method=\"post\" action=\"https://ethpay-api.bysatha.com/api/v1/pay\">   \n    <input type=\"hidden\" name=\"client_id\" value=\"YOUR_CLIENT_ID\">\n    <input type=\"hidden\" name=\"return_url\" value=\"http://sample.com/return\">\n    <input type=\"hidden\" name=\"cancel_url\" value=\"http://sample.com/cancel\">\n    <input type=\"hidden\" name=\"notify_url\" value=\"http://sample.com/notify\">  \n    <input type=\"text\" name=\"currency\" value=\"ETH\">\n    <input type=\"text\" name=\"amount\" value=\"0.02\">  \n    <input type=\"submit\" value=\"Buy Now\">   \n</form> \n</body>\n</html>"}
+                            {"<html>\n<body>\n<form method=\"post\" action=\"https://ethpay-server.herokuapp.com/api/v1/pay\">   \n    <input type=\"hidden\" name=\"client_id\" value=\"YOUR_CLIENT_ID\">\n    <input type=\"hidden\" name=\"return_url\" value=\"https://sample.com/return\">\n    <input type=\"hidden\" name=\"cancel_url\" value=\"https://sample.com/cancel\">\n    <input type=\"hidden\" name=\"notify_url\" value=\"https://sample.com/notify\">  \n    <input type=\"text\" name=\"currency\" value=\"ETH\">\n    <input type=\"text\" name=\"amount\" value=\"0.02\">  \n    <input type=\"submit\" value=\"Buy Now\">   \n</form> \n</body>\n</html>"}
                         </code>
                     </pre>
                         <br/>
