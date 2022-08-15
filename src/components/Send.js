@@ -20,8 +20,6 @@ export default function Send() {
 
     // Component state
     const [currentAccount, setCurrentAccount] = useState("");
-    const [name, setName] = useState("");
-    const [message, setMessage] = useState("");
     const [amount, setAmount] = useState("0");
 
     const [loading, setLoading] = useState(0);
@@ -47,48 +45,48 @@ export default function Send() {
     }
 
     // Wallet connection logic
-    const isWalletConnected = async () => {
-        setLoading(1);
-
-        try {
-            const {ethereum} = window;
-
-            const accounts = await ethereum.request({method: 'eth_accounts'})
-            console.log("accounts: ", accounts);
-
-            // wallet check 1
-
-            if (accounts.length > 0) {
-                const account = accounts[0];
-                console.log("wallet is connected! " + account);
-
-                await connectWallet();
-
-                await Internal.sendWalletCheck(walletAddress).then(response => {
-                    if (response.data === null) {
-                        console.log("Unregistered");
-                        loadingDone()
-                    } else {
-                        console.log(response.data);
-                        console.log("Registered");
-                        loadingDone()
-                    }
-                }).catch(err => {
-                    console.log(err);
-                    loadingDone()
-                })
-
-                // wallet check 2
-
-            } else {
-                console.log("make sure MetaMask is connected");
-                await loadingDone()
-            }
-        } catch (error) {
-            console.log("error: ", error);
-            await loadingDone()
-        }
-    }
+    // const isWalletConnected = async () => {
+    //     setLoading(1);
+    //
+    //     try {
+    //         const {ethereum} = window;
+    //
+    //         const accounts = await ethereum.request({method: 'eth_accounts'})
+    //         console.log("accounts: ", accounts);
+    //
+    //         // wallet check 1
+    //
+    //         if (accounts.length > 0) {
+    //             const account = accounts[0];
+    //             console.log("wallet is connected! " + account);
+    //
+    //             await connectWallet();
+    //
+    //             await Internal.sendWalletCheck(walletAddress).then(response => {
+    //                 if (response.data === null) {
+    //                     console.log("Unregistered");
+    //                     loadingDone()
+    //                 } else {
+    //                     console.log(response.data);
+    //                     console.log("Registered");
+    //                     loadingDone()
+    //                 }
+    //             }).catch(err => {
+    //                 console.log(err);
+    //                 loadingDone()
+    //             })
+    //
+    //             // wallet check 2
+    //
+    //         } else {
+    //             console.log("make sure MetaMask is connected");
+    //             await loadingDone()
+    //         }
+    //     } catch (error) {
+    //         console.log("error: ", error);
+    //         await loadingDone()
+    //     }
+    // }
 
     const connectWallet = async () => {
         setLoading(1);
@@ -156,8 +154,6 @@ export default function Send() {
 
 
                 // Clear the form fields.
-                setName("");
-                setMessage("");
             }
         } catch (error) {
             console.log(error);
@@ -169,12 +165,54 @@ export default function Send() {
         setBetaOpen(false);
     }
 
-    useEffect(() => {
-        let buyMeACoffee;
-        isWalletConnected().then(r => {
-        });
+    // useEffect(() => {
+    //     let buyMeACoffee;
+    //     isWalletConnected().then(r => {
+    //     });
+    //
+    // }, []);
 
-    }, []);
+    useEffect( () => {
+        try {
+            const {ethereum} = window;
+
+            const accounts =  ethereum.request({method: 'eth_accounts'})
+            console.log("accounts: ", accounts);
+
+            // wallet check 1
+
+            if (accounts.length > 0) {
+                const account = accounts[0];
+                console.log("wallet is connected! " + account);
+
+                 connectWallet().then(() => {});
+
+                 Internal.sendWalletCheck(walletAddress).then(response => {
+                    if (response.data === null) {
+                        console.log("Unregistered");
+                        loadingDone().then(() => {});
+                    } else {
+                        console.log(response.data);
+                        console.log("Registered");
+                        loadingDone().then(() => {});
+                    }
+                }).catch(err => {
+                    console.log(err);
+                    loadingDone().then(() => {});
+                })
+
+                // wallet check 2
+
+            } else {
+                console.log("make sure MetaMask is connected");
+                 loadingDone().then(() => {});
+            }
+        } catch (error) {
+            console.log("error: ", error);
+             loadingDone().then(() => {});
+        }
+    });
+
 
     return (
         <div>

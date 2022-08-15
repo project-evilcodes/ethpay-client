@@ -69,27 +69,27 @@ export default function Pay() {
     })
 
     // Wallet connection logic
-    const isWalletConnected = async () => {
-        setLoading(1);
-
-        try {
-            const {ethereum} = window;
-
-            const accounts = await ethereum.request({method: 'eth_accounts'})
-            console.log("accounts: ", accounts);
-            if (accounts.length > 0) {
-                const account = accounts[0];
-                console.log("wallet is connected! " + account);
-                await connectWallet();
-            } else {
-                console.log("make sure MetaMask is connected");
-                await loadingDone()
-            }
-        } catch (error) {
-            console.log("error: ", error);
-            await loadingDone()
-        }
-    }
+    // const isWalletConnected = async () => {
+    //     setLoading(1);
+    //
+    //     try {
+    //         const {ethereum} = window;
+    //
+    //         const accounts = await ethereum.request({method: 'eth_accounts'})
+    //         console.log("accounts: ", accounts);
+    //         if (accounts.length > 0) {
+    //             const account = accounts[0];
+    //             console.log("wallet is connected! " + account);
+    //             await connectWallet();
+    //         } else {
+    //             console.log("make sure MetaMask is connected");
+    //             await loadingDone()
+    //         }
+    //     } catch (error) {
+    //         console.log("error: ", error);
+    //         await loadingDone()
+    //     }
+    // }
 
     const connectWallet = async () => {
         setLoading(1);
@@ -177,11 +177,31 @@ export default function Pay() {
         setBetaOpen(false);
     }
 
-    useEffect(() => {
-        isWalletConnected().then(() => {
-        });
+    // useEffect(() => {
+    //     isWalletConnected().then(() => {
+    //     });
+    //
+    // }, []);
 
-    }, []);
+    useEffect( () => {
+        try {
+            const {ethereum} = window;
+
+            const accounts =  ethereum.request({method: 'eth_accounts'})
+            console.log("accounts: ", accounts);
+            if (accounts.length > 0) {
+                const account = accounts[0];
+                console.log("wallet is connected! " + account);
+                 connectWallet().then(() => {});
+            } else {
+                console.log("make sure MetaMask is connected");
+                 loadingDone()
+            }
+        } catch (error) {
+            console.log("error: ", error);
+             loadingDone()
+        }
+    });
 
     return (
         <div>
