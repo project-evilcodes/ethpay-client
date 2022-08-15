@@ -267,41 +267,11 @@ export default function Landing() {
         window.open("./send/" + currentAccount, '_blank').focus();
     }
 
-    // useEffect(() => {
-    //     isWalletConnected().then(() => {
-    //     });
-    // }, []);
-
-    // Similar to componentDidMount and componentDidUpdate:
-    useEffect( () => {
-        try {
-            const {ethereum} = window;
-            const accounts = ethereum.request({method: 'eth_accounts'})
-
-            // wallet check 1
-
-            if (accounts.length > 0) {
-                const account = accounts[0];
-                console.log("wallet is connected! " + account);
-
-                let accountsString = account.toString().toLowerCase();
-                if (accountsString) {
-                    // document.getElementById("wallet-address").innerText = (accountsString.substring(0, 5) + "..." + accountsString.substring(accountsString.length, accountsString.length - 5)).toString();
-                }
-
-                 L1Function(account).then(() => {});
-
-                // wallet check 2
-
-            } else {
-                console.log("make sure MetaMask is connected");
-                 loadingDone().then(() => {});
-            }
-        } catch (error) {
-            console.log("error: ", error);
-             loadingDone().then(() => {});
-        }
-    });
+    useEffect(() => {
+        isWalletConnected().then(() => {
+        });
+        // eslint-disable-next-line
+    }, []);
 
 
     return (
