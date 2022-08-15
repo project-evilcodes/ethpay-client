@@ -13,7 +13,7 @@ export default class Footer extends Component {
                              data-style-height="24px" data-style-width="100%" data-theme="dark"
                              data-min-review-count={10} data-without-reviews-preferred-string-id={1}>
                             <a href="https://www.trustpilot.com/review/bysatha.com" target="_blank"
-                               rel="noopener">Trustpilot</a>
+                               rel="noopener noreferrer">Trustpilot</a>
                         </div>
                         {/* End TrustBox widget */}
                     </div>

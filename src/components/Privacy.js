@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import Helmet from "react-helmet";
-import {LinearProgress} from "@mui/material";
 import Navbar from "./layouts/Navbar";
 
 export default class Privacy extends Component {
