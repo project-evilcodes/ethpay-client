@@ -59,7 +59,7 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li className="nav-item con-mid">
-                            <a href={"https://youtube.com"} target="_blank" rel="noopener noreferrer"
+                            <a href={"https://www.youtube.com/watch?v=aR4r4r4tl_0"} target="_blank" rel="noopener noreferrer"
                                className="nav-link">
                                 Intro Video
                             </a>
