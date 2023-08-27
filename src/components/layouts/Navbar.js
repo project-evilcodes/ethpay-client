@@ -81,7 +81,7 @@ export default function Navbar() {
                                         </span>
                         </li>}
                         <li className="nav-item nav-testnet">
-                            Beta - Rinkeby & Mainnet
+                            Beta - Goerli & Mainnet
                         </li>
                     </div>
 
